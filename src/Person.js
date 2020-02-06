@@ -22,6 +22,8 @@ class Person {
         this._confirmedTime = 0;
 
         this._moveTarget = null;
+
+        this._shadow_time = 0;
     }
 
     wantMove() {
@@ -60,6 +62,7 @@ class Person {
     beInfected() {
         this._state = Person.State.SHADOW;
         this._infectedTime = MyPanel.worldTime;
+        this._shadow_time = SHADOW_TIME_GEN.next().value;
     }
 
     distance(person) {
@@ -125,7 +128,6 @@ class Person {
     }
 
     update() {
-        // TODO: 找时间改为状态机
         if (this._state >= Person.State.FREEZE) {
             return;
         }
@@ -142,8 +144,7 @@ class Person {
                 bed.empty = false;
             }
         }
-        let shadow_time = SHADOW_TIME_GEN.next();
-        if (MyPanel.worldTime - this._infectedTime > shadow_time.value && this._state === Person.State.SHADOW) {
+        if (MyPanel.worldTime - this._infectedTime > this._shadow_time && this._state === Person.State.SHADOW) {
             this._state = Person.State.CONFIRMED;   // 潜伏者发病
             this._confirmedTime = MyPanel.worldTime;  // 刷新时间
         }
