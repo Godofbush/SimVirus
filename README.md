@@ -1,6 +1,6 @@
 # SimVirus
 
-[VirusBroadcast](https://github.com/KikiLetGo/VirusBroadcast) 的 Javascript 移植版。
+武汉肺炎病毒传播模拟器 [VirusBroadcast](https://github.com/KikiLetGo/VirusBroadcast) 的 Javascript 移植版。
 
 ## 使用方法
 
